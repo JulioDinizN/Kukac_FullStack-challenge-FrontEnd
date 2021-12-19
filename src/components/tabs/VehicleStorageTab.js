@@ -11,30 +11,27 @@ import { api } from '../../services/api';
 import { useForm } from 'react-hook-form';
 import { Input } from '../form/Input';
 import { Toggle } from '../form/Toggle';
+import { useEffect, useState } from 'react';
 
 export function VehicleStorageTab() {
   const toast = useToast();
-
-  function callForToast(status) {
-    toast({
-      title: !!status ? 'Erro no Envio' : 'Envio bem sucedido',
-      status: !!status ? 'error' : 'success',
-      isClosable: true,
-      position: 'top-right',
-    });
-  }
+  const [apiAnswer, setApiAnswer] = useState('');
 
   const {
     register,
     control,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm({
     defaultValues: {
       toggle: '',
+      doors: '0'
     },
   });
+
+  const disabledDoorsWhenMotocycle = watch('toggle')
 
   const onSubmit = async (data) => {
     const { toggle, model, fabricationDate, doors, brand } = data;
@@ -49,17 +46,30 @@ export function VehicleStorageTab() {
       },
     });
 
-    const apiAnwser = response.data;
+    setApiAnswer(response.data);
+  };
 
+  useEffect(() => {
     if (isSubmitSuccessful) {
-      callForToast();
+      toast({
+        title: 'Chamada bem sucedida',
+        status: 'success',
+        isClosable: true,
+        position: 'top-right',
+      });
+
       reset();
     }
 
-    if(apiAnwser === 'error') {
-      callForToast(apiAnwser);
+    if (apiAnswer === 'error') {
+      toast({
+        title: 'Houve um problema no seu cadastro',
+        status: 'error',
+        isClosable: true,
+        position: 'top-right',
+      });
     }
-  };
+  }, [isSubmitSuccessful, reset, toast, apiAnswer]);
 
   return (
     <Flex
@@ -100,6 +110,7 @@ export function VehicleStorageTab() {
         <Input
           id="doors"
           type="number"
+          disabled={disabledDoorsWhenMotocycle === 'motocycle'}
           placeholder="Quantidade de Portas"
           error={errors.doors}
           {...register('doors', {

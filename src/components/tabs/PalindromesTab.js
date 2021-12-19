@@ -4,9 +4,9 @@ import {
   VStack,
   List as ChakraList,
   ListItem,
-  useToast
+  useToast,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { useForm } from 'react-hook-form';
 import { List } from 'react-virtualized';
@@ -14,16 +14,7 @@ import { Input } from '../form/Input';
 
 export function PalindromesTab() {
   const [palindromes, setPalindromes] = useState([]);
-  const toast = useToast()
-
-  function callForToast() {
-    toast({
-        title: "Chamada bem sucedida",
-        status: 'success',
-        isClosable: true,
-        position: 'top-right'
-    })
-  }
+  const toast = useToast();
 
   const {
     register,
@@ -42,12 +33,20 @@ export function PalindromesTab() {
     const palindromesArray = response.data;
 
     setPalindromes(palindromesArray);
-
-    if(isSubmitSuccessful) {
-        callForToast()
-        reset()
-    }
   };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      toast({
+        title: 'Chamada bem sucedida',
+        status: 'success',
+        isClosable: true,
+        position: 'top-right',
+      });
+
+      reset();
+    }
+  }, [isSubmitSuccessful, reset, toast]);
 
   const rowRenderer = ({ index, key, style }) => {
     return (

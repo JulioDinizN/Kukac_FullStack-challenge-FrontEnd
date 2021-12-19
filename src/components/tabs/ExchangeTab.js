@@ -1,28 +1,19 @@
 import { Flex, Button, VStack, useToast, Box } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { useForm } from 'react-hook-form';
 import { Input } from '../form/Input';
+import { formatToHaveCurrency } from '../../utils';
 
 export function ExchangeTab() {
   const [exchange, setExchange] = useState({});
   const toast = useToast();
-
-  function callForToast() {
-    toast({
-      title: 'Chamada bem sucedida',
-      status: 'success',
-      isClosable: true,
-      position: 'top-right',
-    });
-  }
 
   const {
     register,
     handleSubmit,
     reset,
     getValues,
-    setError,
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm();
 
@@ -35,13 +26,28 @@ export function ExchangeTab() {
 
     const exchangeResponse = response.data;
 
-    setExchange(exchangeResponse);
+    const formmatedResponse = {
+      ...exchangeResponse,
+      price: formatToHaveCurrency(exchangeResponse.price),
+      payment: formatToHaveCurrency(exchangeResponse.payment),
+      change: formatToHaveCurrency(exchangeResponse.change),
+    };
 
+    setExchange(formmatedResponse);
+  };
+
+  useEffect(() => {
     if (isSubmitSuccessful) {
-      callForToast();
+      toast({
+        title: 'Chamada bem sucedida',
+        status: 'success',
+        isClosable: true,
+        position: 'top-right',
+      });
+
       reset();
     }
-  };
+  }, [isSubmitSuccessful, reset, toast]);
 
   return (
     <Flex direction="column">
@@ -63,7 +69,9 @@ export function ExchangeTab() {
               required: 'Precisa ser preenchido',
               min: { value: 0, message: 'O preço não pode ser negativo' },
               validate: {
-                gratherThan: value => Number(value) < Number(getValues('payment')) || 'O preço do produto não pode ser maior que o pagamento'
+                gratherThan: (value) =>
+                  Number(value) < Number(getValues('payment')) ||
+                  'O preço do produto não pode ser maior que o pagamento',
               },
             })}
           />

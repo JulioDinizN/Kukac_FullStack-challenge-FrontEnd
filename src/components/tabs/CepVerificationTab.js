@@ -10,9 +10,9 @@ import {
   AccordionPanel,
   AccordionIcon,
   Skeleton,
-  Stack
+  Stack,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { useForm } from 'react-hook-form';
 import { Input } from '../form/Input';
@@ -20,15 +20,6 @@ import { Input } from '../form/Input';
 export function CepVerificationTab() {
   const [cepsValidation, setCepsValidation] = useState([]);
   const toast = useToast();
-
-  function callForToast() {
-    toast({
-      title: 'Chamada bem sucedida',
-      status: 'success',
-      isClosable: true,
-      position: 'top-right',
-    });
-  }
 
   const {
     register,
@@ -38,7 +29,7 @@ export function CepVerificationTab() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    setCepsValidation([])
+    setCepsValidation([]);
 
     let cepsToVerify = [];
     for (let item in data) {
@@ -54,12 +45,20 @@ export function CepVerificationTab() {
     setCepsValidation(cepsVerified);
 
     console.log(cepsValidation);
+  };
 
+  useEffect(() => {
     if (isSubmitSuccessful) {
-      callForToast();
+      toast({
+        title: 'Chamada bem sucedida',
+        status: 'success',
+        isClosable: true,
+        position: 'top-right',
+      });
+
       reset();
     }
-  };
+  }, [isSubmitSuccessful, reset, toast]);
 
   return (
     <Box>
@@ -139,21 +138,21 @@ export function CepVerificationTab() {
         </Button>
       </Flex>
       <Box bg="gray.800" mt={8} p="8" borderRadius={8}>
-        { isSubmitting && (
-            <Stack>
-                <Skeleton height='30px' bgColor='gray.500' />
-                <Skeleton height='30px' />
-                <Skeleton height='30px' />
-                <Skeleton height='30px' />
-                <Skeleton height='30px' />
-            </Stack>
+        {isSubmitting && (
+          <Stack>
+            <Skeleton height="30px" bgColor="gray.500" />
+            <Skeleton height="30px" />
+            <Skeleton height="30px" />
+            <Skeleton height="30px" />
+            <Skeleton height="30px" />
+          </Stack>
         )}
         <Accordion allowMultiple>
           {cepsValidation.length > 0 &&
             cepsValidation.map((cep, index) => {
               if (cep.erro) {
                 return (
-                    <AccordionItem key={index}>
+                  <AccordionItem key={index}>
                     <h2>
                       <AccordionButton>
                         <Box flex="1" textAlign="left">
@@ -162,11 +161,9 @@ export function CepVerificationTab() {
                         <AccordionIcon />
                       </AccordionButton>
                     </h2>
-                    <AccordionPanel pb={4}>
-                       Cep inválido 
-                    </AccordionPanel>
+                    <AccordionPanel pb={4}>Cep inválido</AccordionPanel>
                   </AccordionItem>
-                )
+                );
               } else {
                 return (
                   <AccordionItem key={index}>
@@ -179,16 +176,37 @@ export function CepVerificationTab() {
                       </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
-                      <p><strong>Cep:</strong> {cep.cep}</p>
-                      <p><strong>Logradouro:</strong> {cep.logradouro}</p>
-                      <p><strong>Complemento:</strong> {cep.complemento || 'Não há dados'}</p>
-                      <p><strong>Bairro:</strong> {cep.bairro}</p>
-                      <p><strong>Localidade:</strong> {cep.localidade}</p>
-                      <p><strong>Uf:</strong> {cep.uf}</p>
-                      <p><strong>Ibge:</strong> {cep.ibge}</p>
-                      <p><strong>Gia:</strong> {cep.gia || 'Não há dados'}</p>
-                      <p><strong>DDD:</strong> {cep.ddd}</p>
-                      <p><strong>Siafi:</strong> {cep.siafi}</p>
+                      <p>
+                        <strong>Cep:</strong> {cep.cep}
+                      </p>
+                      <p>
+                        <strong>Logradouro:</strong> {cep.logradouro}
+                      </p>
+                      <p>
+                        <strong>Complemento:</strong>{' '}
+                        {cep.complemento || 'Não há dados'}
+                      </p>
+                      <p>
+                        <strong>Bairro:</strong> {cep.bairro}
+                      </p>
+                      <p>
+                        <strong>Localidade:</strong> {cep.localidade}
+                      </p>
+                      <p>
+                        <strong>Uf:</strong> {cep.uf}
+                      </p>
+                      <p>
+                        <strong>Ibge:</strong> {cep.ibge}
+                      </p>
+                      <p>
+                        <strong>Gia:</strong> {cep.gia || 'Não há dados'}
+                      </p>
+                      <p>
+                        <strong>DDD:</strong> {cep.ddd}
+                      </p>
+                      <p>
+                        <strong>Siafi:</strong> {cep.siafi}
+                      </p>
                     </AccordionPanel>
                   </AccordionItem>
                 );
