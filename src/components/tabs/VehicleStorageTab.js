@@ -23,6 +23,7 @@ export function VehicleStorageTab() {
     handleSubmit,
     reset,
     watch,
+    setValue,
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm({
     defaultValues: {
@@ -32,6 +33,10 @@ export function VehicleStorageTab() {
   });
 
   const disabledDoorsWhenMotocycle = watch('toggle')
+
+  if(disabledDoorsWhenMotocycle === 'motocycle') {
+    setValue('doors', '0')
+  }
 
   const onSubmit = async (data) => {
     const { toggle, model, fabricationDate, doors, brand } = data;
