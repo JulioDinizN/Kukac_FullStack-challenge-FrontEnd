@@ -6,7 +6,6 @@ Este projeto foi um desafio proposto pela empresa Kukac, referente a vaga de des
 
 ## Requisitos
 
-Criar uma aplicação fazendo o uso do React e Redux para controle dos estados. Existem três conceitos chaves que precisam ser utilizados para alcançar este objetivo:
 Criar um Front-end e um Back-end para alcanças os seguintes objetivos:
 
 - Fazer um algoritmo que imprima todos os números palíndromos entre um intervalo que será escolhido pelo usuário da aplicação
@@ -19,24 +18,25 @@ Criar um Front-end e um Back-end para alcanças os seguintes objetivos:
   O valor da compra e o valor de dinheiro entregue ao caixa deve ser informado pelo usuário.
 
 - Crie a interface “Veiculo” com os seguintes atributos:
-  => Modelo
-  => Ano de fabricação
-  => Quantidade de Portas
-  => Marca
+  <ul>
+    <li>Modelo</li>
+    <li>Ano de fabricação</li>
+    <li>Quantidade de Portas</li>
+    <li>Marca</li>
+  </ul>
 
 - Crie a classe “Carro”, que herda de Veículo e tem os seguintes atributos:
-  => Quantidade de Portas: entre 2 e 4
+  <ul>
+    <li>Quantidade de Portas: entre 2 e 4</li>
+  </ul>
 
 - Crie a classe “Moto”, que herda de Veículo, e possui os seguintes atributos:
-  => Rodas: 2
-  => Passageiros: entre 1 e 2
+  <ul>
+    <li>Rodas: 2</li>
+    <li>Passageiros: entre 1 e 2</li>
+  </ul>
 
-- Deve ser informado pelo usuário 5 CEP’s, a aplicação deve consumir a api VIACep 
-    >https://viacep.com.br/
-  e obtiver dados sobre esses CEP’s.
-  Os CEP’s informados pelo usuário devem ser inicialmente armazenados em um array, e o
-  consumo da API deve ser de forma síncrona.
-  Os dados após o processamento devem ser exibidos na tela.
+- Deve ser informado pelo usuário 5 CEP’s, a aplicação deve consumir a api VIACep <a href="https://viacep.com.br/">https://viacep.com.br/</a> e obtiver dados sobre esses CEP’s. Os CEP’s informados pelo usuário devem ser inicialmente armazenados em um array, e oconsumo da API deve ser de forma síncrona. Os dados após o processamento devem ser exibidos na tela.
 
 ## Resultado Final
 
@@ -68,4 +68,3 @@ ou
 `npm run start`
 
 Roda no modo desenvolvedor. Abra [http://localhost:3000](http://localhost:3000) para visualizar no navegador.
-
