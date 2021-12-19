@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Desafio Kukac Full-Stack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Resumo
 
-## Available Scripts
+Este projeto foi um desafio proposto pela empresa Kukac, referente a vaga de desenvolvedor Full-Stack. O objetivo era construir uma aplicação completa com Front-end e Back-end para cumprir com alguns desafios propostos.
 
-In the project directory, you can run:
+## Requisitos
 
-### `npm start`
+Criar uma aplicação fazendo o uso do React e Redux para controle dos estados. Existem três conceitos chaves que precisam ser utilizados para alcançar este objetivo:
+Criar um Front-end e um Back-end para alcanças os seguintes objetivos:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Fazer um algoritmo que imprima todos os números palíndromos entre um intervalo que será escolhido pelo usuário da aplicação
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Suponha que um caixa disponha apenas de notas de 1, 10 e 100 reais. Considerando que
+  alguém está pagando uma compra, escreva um algoritmo que mostre o número mínimo de
+  notas que o caixa deve fornecer como troco.
+  Mostre também: o valor da compra, o valor do troco e a quantidade de cada tipo de nota do
+  troco. Suponha que o sistema monetário não utilize moedas.
+  O valor da compra e o valor de dinheiro entregue ao caixa deve ser informado pelo usuário.
 
-### `npm test`
+- Crie a interface “Veiculo” com os seguintes atributos:
+  => Modelo
+  => Ano de fabricação
+  => Quantidade de Portas
+  => Marca
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Crie a classe “Carro”, que herda de Veículo e tem os seguintes atributos:
+  => Quantidade de Portas: entre 2 e 4
 
-### `npm run build`
+- Crie a classe “Moto”, que herda de Veículo, e possui os seguintes atributos:
+  => Rodas: 2
+  => Passageiros: entre 1 e 2
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Deve ser informado pelo usuário 5 CEP’s, a aplicação deve consumir a api VIACep 
+    >https://viacep.com.br/
+  e obtiver dados sobre esses CEP’s.
+  Os CEP’s informados pelo usuário devem ser inicialmente armazenados em um array, e o
+  consumo da API deve ser de forma síncrona.
+  Os dados após o processamento devem ser exibidos na tela.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Resultado Final
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![image](https://user-images.githubusercontent.com/78332530/146692522-90e3ea00-ae02-4771-ba7f-1ce3a2333a66.jpg)
+![image](https://user-images.githubusercontent.com/78332530/146692538-f19bdda7-ef35-4c83-8d5d-feaea960790c.jpg)
 
-### `npm run eject`
+## Dependências
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- React
+  > https://reactjs.org/docs/getting-started.html
+- Chakra Ui
+  > https://chakra-ui.com/docs/getting-started
+- Axios
+  > https://axios-http.com/docs/intro
+- react-hook-form
+  > https://react-hook-form.com/get-started
+- react-virtualized
+  > https://github.com/bvaughn/react-virtualized
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Instalando Dependências
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+No diretório do projeto, você pode escrever:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+`npm install`
 
-## Learn More
+E começar o projeto com:
+`yarn start`
+ou
+`npm run start`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Roda no modo desenvolvedor. Abra [http://localhost:3000](http://localhost:3000) para visualizar no navegador.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
